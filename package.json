@@ -1,11 +1,12 @@
 {
-  "name": "etherplate",
+  "name": "baishi",
   "private": true,
   "version": "0.0.1",
   "description": "Ethereum DApp example project demoing web3 events, Redux, React & React Router",
   "scripts": {
     "lint": "eslint app",
     "build": "webpack --mode production --config webpack.prod.js",
+    "ganache": "./scripts/ganache.sh",
     "dev": "webpack-dev-server --config webpack.dev.js --mode development",
     "test": "jest"
   },
@@ -105,10 +106,11 @@
     "react-tooltip": "^3.6.0",
     "redux": "^4.0.0",
     "request": "^2.85.0",
+    "solc": "^0.4.25",
     "tmp": "^0.0.33",
     "truffle-contract": "^3.0.5",
     "truffle-hdwallet-provider": "0.0.3",
-    "web3": "0.20.6",
+    "web3": "^1.0.0-beta.34",
     "web3-redux": "^0.5.2"
   }
 }
