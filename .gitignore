@@ -1,6 +1,10 @@
-/node_modules
-/build
-.vscode
-.idea
-.history
-.idea
+.DS_Store
+build
+node_modules
+.envrc
+config/*.json
+.ganache
+secrets
+functions
+networks/1234.json
+.idea/

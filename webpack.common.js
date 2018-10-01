@@ -1,8 +1,8 @@
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
-require('@babel/register');
-require('@babel/polyfill');
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
+require("@babel/register")
+require("@babel/polyfill")
 
 module.exports = {
   entry: ['@babel/polyfill', './app/javascripts/app.js'],
@@ -10,7 +10,7 @@ module.exports = {
     sharp: 'commonjs sharp'
   },
   node: {
-    fs: 'empty'
+    fs: "empty"
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -20,34 +20,28 @@ module.exports = {
     // Copy our app's index.html to the build folder.
     new CopyWebpackPlugin([
       { from: './app/_redirects' },
-      {
-        from: './app/*.html',
-        flatten: true
-      },
-      {
-        from: './app/images',
-        to: 'images/'
-      }
+      { from: './app/*.html', flatten: true },
+      { from: './app/images', to: 'images/' }
     ])
   ],
   module: {
     rules: [
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-        use: ['file-loader?name=[name].[ext]']
+        use: [ 'file-loader?name=[name].[ext]' ]
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+       test: /\.css$/,
+       use: [ 'style-loader', 'css-loader' ]
       },
       {
         test: /\.scss$/,
         use: [{
-          loader: 'style-loader',
+          loader: "style-loader",
         }, {
-          loader: 'css-loader'
+          loader: "css-loader"
         }, {
-          loader: 'sass-loader',
+          loader: "sass-loader",
           options: {
             sourceMap: true,
             data: '@import "variables";',
@@ -74,4 +68,4 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   }
-};
+}

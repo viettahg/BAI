@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { toastr } from 'react-redux-toastr';
-import range from 'lodash.range';
-import classnames from 'classnames';
-import nfToken from '@/contracts/nfTokenFactory';
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 
-import { addTokenAction } from '@/redux/actions';
+import range from 'lodash.range'
+import classnames from 'classnames'
 
-import TokenType from '../token-type';
-import Ether from '@/components/ether';
+import nfToken from '@/contracts/nfTokenFactory'
 
-import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url';
+import { addTokenAction } from '@/redux/actions'
 
-import style from './style.scss';
+import TokenType from '../token-type'
+import Ether from '@/components/ether'
+
+import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
+
+import style from './style.scss'
 
 const MyCustomComponent = class extends Component {
 
@@ -22,15 +24,15 @@ const MyCustomComponent = class extends Component {
       <span>
         {this.props.children}
       </span>
-    );
+    )
   }
 
-};
+}
 
 
 const CustomizeToken = class extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       price: '',
       tokenType: 0,
@@ -38,7 +40,7 @@ const CustomizeToken = class extends Component {
       titleError: '',
       errorMessage: '',
       redirectToTokenList: false
-    };
+    }
   }
 
   async componentDidMount() {
@@ -46,19 +48,19 @@ const CustomizeToken = class extends Component {
       let contractInstance = await nfToken(window.web3);
       let price = await contractInstance.getCurrentPrice();
 
-      this.setState({ price: price.toString() });
-    } catch (error) {
-      toastr.error('Error', error.message);
+      this.setState({ price: price.toString() })
+    } catch(error) {
+      toastr.error('Error', error.message)
     }
   }
 
-  async onClickSave() {
+  async onClickSave () {
     // Reset the error handling
-    this.setState({ titleError: '' });
+    this.setState({ titleError: '' })
 
     // TODO: Replace these magic numbers with an app-wide config:
     if (this.state.title.length < 1) {
-      this.setState({ titleError: 'Please enter at least 1 character for the title' });
+      this.setState({ titleError: 'Please enter at least 1 character for the title' })
     } else {
       try {
         let contractInstance = await nfToken(window.web3);
@@ -67,34 +69,31 @@ const CustomizeToken = class extends Component {
           this.state.tokenType,
           this.state.title,
           { value: this.state.price }
-        );
+        )
 
-        this.props.addToken({ transactionHash: txHash });
-        this.setState({ redirectToTokenList: true });
-        toastr.success('Success', 'The transaction has been broadcast.');
-      } catch (err) {
-        toastr.error('Error', 'The transaction was cancelled or rejected.');
+        this.props.addToken({ transactionHash: txHash })
+        this.setState({ redirectToTokenList: true })
+        toastr.success('Success', 'The transaction has been broadcast.')
+      } catch(err) {
+        toastr.error('Error', 'The transaction was cancelled or rejected.')
       }
     }
   }
 
-  onClickTokenType(index) {
-    this.setState({ tokenType: index });
+  onClickTokenType (index) {
+    this.setState({ tokenType: index })
   }
 
-  render() {
-    if (this.state.redirectToTokenList) {
-      return <Redirect to={'/tokens/all'}/>;
-    }
+  render () {
+    if (this.state.redirectToTokenList)
+      return <Redirect to={'/tokens/all'} />
 
-    if (this.state.titleError) {
+    if (this.state.titleError)
       var titleError =
-        <p className="help is-danger">{this.state.titleError}</p>;
-    }
+        <p className="help is-danger">{this.state.titleError}</p>
 
-    if (this.state.errorMessage) {
-      var errorMessage = <p className='help is-danger'>{this.state.errorMessage}</p>;
-    }
+    if (this.state.errorMessage)
+      var errorMessage = <p className='help is-danger'>{this.state.errorMessage}</p>
 
     return (
       <section className='section'>
@@ -105,25 +104,23 @@ const CustomizeToken = class extends Component {
               <div className="etherplate-form">
                 <div className="etherplate-form--wrapper">
                   <div className="columns is-mobile">
-                    {range(15)
-                      .map(index => {
-                        var selected = this.state.tokenType === index;
-                        return (
-                          <div key={index}
-                               className="column rotate-in-center is-one-fifth-mobile is-one-fifth-tablet is-one-fifth-desktop">
-                            <TokenType
-                              url={nfTokenTypeImageUrl(index, 'small')}
-                              onClick={() => this.onClickTokenType(index)}
-                              selected={selected}/>
-                          </div>
-                        );
-                      })}
+                    {range(2).map(index => {
+                      var selected = this.state.tokenType === index
+                      return (
+                        <div key={index} className="column rotate-in-center is-one-fifth-mobile is-one-fifth-tablet is-one-fifth-desktop">
+                          <TokenType
+                            url={nfTokenTypeImageUrl(index, 'small')}
+                            onClick={() => this.onClickTokenType(index)}
+                            selected={selected} />
+                        </div>
+                      )
+                    })}
                   </div>
 
                   <div className="field">
                     <label className="label">Price</label>
                     <div className="control">
-                      <Ether wei={this.state.price}/>
+                      <Ether wei={this.state.price} />
                     </div>
                   </div>
 
@@ -134,12 +131,12 @@ const CustomizeToken = class extends Component {
                         placeholder={`Name your ${this.state.tokenType == 0 ? 'sword' : 'shield'}`}
                         className="input"
                         value={this.state.title}
-                        onChange={(e) => this.setState({ title: e.target.value })}/>
+                        onChange={(e) => this.setState({ title: e.target.value })} />
                     </div>
                     {titleError}
                   </div>
 
-                  <br/>
+                  <br />
                   <p>
                     <button
                       disabled={this.state.selectedToken === null}
@@ -155,22 +152,22 @@ const CustomizeToken = class extends Component {
 
             <div className='column is-one-third'>
               <figure className="image is-square">
-                <img src={nfTokenTypeImageUrl(this.state.tokenType)}/>
+                <img src={nfTokenTypeImageUrl(this.state.tokenType)} />
               </figure>
             </div>
           </div>
         </div>
       </section>
-    );
+    )
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addToken: (token) => {
-      dispatch(addTokenAction(token));
+      dispatch(addTokenAction(token))
     }
-  };
-};
+  }
+}
 
-export default connect(null, mapDispatchToProps)(CustomizeToken);
+export default connect(null, mapDispatchToProps)(CustomizeToken)
