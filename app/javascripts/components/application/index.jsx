@@ -13,7 +13,7 @@ import web3Wrap from '@/components/web3Wrap'
 
 import Header from './layout/header'
 import Footer from './layout/footer'
-import Landing from './landing.jsx'
+import Landing from './landing'
 import NotFoundPage from './not-found'
 import Token from './token'
 
@@ -100,7 +100,7 @@ export class Application extends Component {
               <Route path='/tokens/new' component={this.web3CustomizeToken} />
               <Route path='/tokens/:tokenId' component={Token} />
 
-              <Route exact={true} path='/' component={Landing} />
+              <Route exact={true} path='/tokens/new' component={this.web3CustomizeToken} />
 
               <Route component={NotFoundPage} />
             </Switch>

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import NetworkInfo from '@/components/application/layout/header/NetworkInfo'
 
-import EtherplateWhiteLogoImage from '@/../images/logos/etherplate-logo--white--lg.png'
+import BaishiLogo from '@/../images/logos/baishi-logo.svg'
 
 import './header.scss';
 
@@ -32,8 +32,8 @@ const Header = class extends Component {
         <div className="container">
           <div className="navbar-brand">
             <div className="navbar-item">
-              <NavLink to="/">
-                <img src={`/${EtherplateWhiteLogoImage}`} />
+              <NavLink to="/tokens/new">
+                <img src={`/${BaishiLogo}`} />
               </NavLink>
             </div>
 
