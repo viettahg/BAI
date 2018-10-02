@@ -13,7 +13,7 @@ import web3Wrap from '@/components/web3Wrap'
 
 import Header from './layout/header'
 import Footer from './layout/footer'
-import Landing from './landing'
+import Landing from './landing.jsx'
 import NotFoundPage from './not-found'
 import Token from './token'
 
