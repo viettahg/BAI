@@ -8,7 +8,7 @@
       "transform-class-properties",
       { "spec": true }
     ],
-    stri[
+    [
       "babel-plugin-root-import",
       {
         "rootPathSuffix": "app/javascripts",

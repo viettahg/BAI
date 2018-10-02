@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
-import range from 'lodash.range';
+
 import classnames from 'classnames';
+
 import nfToken from '@/contracts/nfTokenFactory';
 
 import { addTokenAction } from '@/redux/actions';
@@ -13,19 +14,7 @@ import Ether from '@/components/ether';
 
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url';
 
-import style from './style.scss';
-
-const MyCustomComponent = class extends Component {
-
-  render() {
-    return (
-      <span>
-        {this.props.children}
-      </span>
-    );
-  }
-
-};
+import './style.scss';
 
 
 const CustomizeToken = class extends Component {
@@ -37,14 +26,46 @@ const CustomizeToken = class extends Component {
       title: '',
       titleError: '',
       errorMessage: '',
-      redirectToTokenList: false
+      redirectToTokenList: false,
     };
+    this.fixedAssets = [
+      {
+        title: 'Dragonclaw Hook',
+        image: '/images/token-images/cheap-dota2-dragonclaw-hook-9682.jpg',
+        price: 0.03,
+      },
+      {
+        title: 'Vigil Triumph',
+        image: '/images/token-images/cheap-dota2-vigil-triumph-21872.jpg',
+        price: 0.03,
+      },
+      {
+        title: 'Sullen Harvest',
+        image: '/images/token-images/cheap-dota2-sullen-harvest-20909.jpg',
+        price: 0.03,
+      },
+      {
+        title: 'Sea Rake Bridle',
+        image: '/images/token-images/cheap-dota2-sea-rake-s-bridle-20164.jpg',
+        price: 0.03,
+      },
+      {
+        title: 'Astral Drift',
+        image: '/images/token-images/cheap-dota2-astral-drift-461.jpg',
+        price: 0.03,
+      },
+      {
+        title: 'Scorching Talon',
+        image: '/images/token-images/cheap-dota2-scorching-talon-20130.jpg',
+        price: 0.03,
+      },
+    ];
   }
 
   async componentDidMount() {
     try {
-      let contractInstance = await nfToken(window.web3);
-      let price = await contractInstance.getCurrentPrice();
+      const contractInstance = await nfToken(window.web3);
+      const price = await contractInstance.getCurrentPrice();
 
       this.setState({ price: price.toString() });
     } catch (error) {
@@ -104,59 +125,43 @@ const CustomizeToken = class extends Component {
 
               <div className="etherplate-form">
                 <div className="etherplate-form--wrapper">
-                  <div className="columns is-mobile">
-                    {range(15)
-                      .map(index => {
+                  <div className="columns is-multiline">
+                    {this.fixedAssets
+                      .map((item, index) => {
                         var selected = this.state.tokenType === index;
                         return (
-                          <div key={index}
-                               className="column rotate-in-center is-one-fifth-mobile is-one-fifth-tablet is-one-fifth-desktop">
+                          <div key={item.title} className="column is-one-third">
                             <TokenType
-                              url={nfTokenTypeImageUrl(index, 'small')}
+                              title={item.title}
+                              url={item.image}
                               onClick={() => this.onClickTokenType(index)}
-                              selected={selected}/>
+                              selected={selected}
+                              price={item.price}
+                            />
                           </div>
                         );
                       })}
                   </div>
 
-                  <div className="field">
-                    <label className="label">Price</label>
-                    <div className="control">
-                      <Ether wei={this.state.price}/>
-                    </div>
-                  </div>
-
-                  <div className="field">
-                    <label className="label">Title</label>
-                    <div className="control">
-                      <input
-                        placeholder={`Name your ${this.state.tokenType == 0 ? 'sword' : 'shield'}`}
-                        className="input"
-                        value={this.state.title}
-                        onChange={(e) => this.setState({ title: e.target.value })}/>
-                    </div>
-                    {titleError}
-                  </div>
-
                   <br/>
                   <p>
-                    <button
-                      disabled={this.state.selectedToken === null}
-                      className={classnames('button is-success is-medium')}
-                      onClick={(e) => this.onClickSave()}>
-                      Buy Token
-                    </button>
+
                   </p>
                   {errorMessage}
                 </div>
               </div>
             </div>
 
-            <div className='column is-one-third'>
+            <div className='column is-one-third has-text-centered'>
               <figure className="image is-square">
-                <img src={nfTokenTypeImageUrl(this.state.tokenType)}/>
+                <img src={this.fixedAssets[this.state.tokenType].image}/>
               </figure>
+              <button
+                disabled={this.state.selectedToken === null}
+                className={classnames('button is-success is-medium')}
+                onClick={(e) => this.onClickSave()}>
+                Buy Token
+              </button>
             </div>
           </div>
         </div>

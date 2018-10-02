@@ -26,7 +26,7 @@ contract NFToken is ERC721Token, Ownable {
   /// The title of the token
   mapping(uint256 => string) tokenTitles;
 
-  constructor() ERC721Token("BaishiNFT", "BNFT") public {
+  constructor() ERC721Token("Etherplate NFToken", "ENFT") public {
     // any init code when you deploy the contract would run here
   }
 

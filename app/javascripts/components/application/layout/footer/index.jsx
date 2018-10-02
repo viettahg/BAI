@@ -1,23 +1,20 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react';
 
-import './footer.scss'
+import './footer.scss';
 
 export default class Footer extends Component {
 
-  render () {
+  render() {
     return (
       <footer className="footer">
         <div className="container">
           <div className="content has-text-centered">
             <p>
-              <strong>Etherplate</strong> is a boilerplate Ethereum example DApp by <a href="https://chuckbergeron.io">Chuck Bergeron</a>
-              <br />Built on &#128279; in Vancouver.
+              © 2018 Baishi.io
             </p>
           </div>
         </div>
       </footer>
-    )
+    );
   }
 }
