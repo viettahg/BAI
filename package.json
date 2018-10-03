@@ -1,8 +1,8 @@
 {
-  "name": "etherplate",
+  "name": "baishi",
   "private": true,
   "version": "0.0.1",
-  "description": "Ethereum DApp example project demoing web3 events, Redux, React & React Router",
+  "description": "Ethereum DApp",
   "scripts": {
     "lint": "eslint app",
     "build": "webpack --mode production --config webpack.prod.js",
@@ -10,7 +10,7 @@
     "dev": "webpack-dev-server --config webpack.dev.js --mode development",
     "test": "jest"
   },
-  "author": "Chuck Bergeron",
+  "author": "Viet Tang",
   "license": "CC0",
   "main": "truffle.js",
   "directories": {
@@ -18,13 +18,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chuckbergeron/etherplate.git"
+    "url": "git+https://github.com/viettahg/BAI.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/chuckbergeron/etherplate/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/chuckbergeron/etherplate#readme",
+  "homepage": "",
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.46",
     "@babel/core": "^7.0.0-beta.46",
