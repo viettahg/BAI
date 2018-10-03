@@ -16,7 +16,6 @@ import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url';
 
 import './style.scss';
 
-
 const CustomizeToken = class extends Component {
   constructor(props) {
     super(props);
