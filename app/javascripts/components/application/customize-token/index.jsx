@@ -78,25 +78,27 @@ const CustomizeToken = class extends Component {
     this.setState({ titleError: '' });
 
     // TODO: Replace these magic numbers with an app-wide config:
-    if (this.state.title.length < 1) {
-      this.setState({ titleError: 'Please enter at least 1 character for the title' });
-    } else {
-      try {
-        let contractInstance = await nfToken(window.web3);
+    // if (this.state.title.length < 1) {
+    //   this.setState({ titleError: 'Please enter at least 1 character for the title' });
+    // } else {
+    try {
+      const contractInstance = await nfToken(window.web3);
 
-        const txHash = await contractInstance.buyToken.sendTransaction(
-          this.state.tokenType,
-          this.state.title,
-          { value: this.state.price }
-        );
+      const item = this.fixedAssets[this.state.tokenType];
+      // console.log('value = %f', parseFloat(this.state.price))
+      const txHash = await contractInstance.buyToken.sendTransaction(
+        this.state.tokenType,
+        item.title,
+        { value: this.state.price }
+      );
 
-        this.props.addToken({ transactionHash: txHash });
-        this.setState({ redirectToTokenList: true });
-        toastr.success('Success', 'The transaction has been broadcast.');
-      } catch (err) {
-        toastr.error('Error', 'The transaction was cancelled or rejected.');
-      }
+      this.props.addToken({ transactionHash: txHash });
+      this.setState({ redirectToTokenList: true });
+      toastr.success('Success', 'The transaction has been broadcast.');
+    } catch (err) {
+      toastr.error('Error', 'The transaction was cancelled or rejected.');
     }
+    // }
   }
 
   onClickTokenType(index) {
