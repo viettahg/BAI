@@ -1,20 +1,3 @@
-# Etherplate
-
-![etherplate red block logo](https://raw.githubusercontent.com/chuckbergeron/etherplate/master/app/images/logos/etherplate-logo--red--lg.png)
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![CC0](https://img.shields.io/badge/license-CC0-green.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-
-### What is this?
-
-This is an example project showing how you can hook up your Ethereum Non-Fungible Tokens (NFTs, ERC721, similar to CryptoKitties) contract in a DApp. It demos web3 events, and is highly opinionated in that it uses Redux, React, React Router, and Bulma. You can rip out of any these or replace them with your favourites (ie. Skeleton.css instead of Bulma, etc.).
-
-Etherplate uses OpenZeppelin's fantastic community-audited contracts as a base to implement the ERC721 standard.
-
-### View Demo
-
-[View Demo on Netlify (Uses Ropsten testnet)](http://etherplate.netlify.com/)
-
-![Etherplate Demo Gif](https://raw.githubusercontent.com/chuckbergeron/etherplate/master/app/images/etherplate-demo.gif)
 
 # Setup
 
@@ -133,37 +116,3 @@ Examples of a bunch of different looking toast messages to show on an error mess
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
 
 
-## Done:
-
-* ~~Make into a truffle box and submit to trufflesuite~~
-* ~~BUG: Purchase History only showing some purchases while My Tokens shows more ... ?~~
-* ~~Show token ID / transaction ID on purchase history and Tokens#show page~~
-* ~~Make sure 'Purchase History' page works~~
-* ~~Implement Redux for web3 events~~
-* ~~Make all React prop types required (isRequired) and provide defaultProps for those that are not~~
-* ~~Convert all css to scss~~
-* ~~Improve mobile styling / media query support~~
-* ~~Deploy to Netlify & Ropsten, use Infura~~
-* ~~Use a local web3 (1.0.0.beta?) instead of the current MetaMask/browser's web3 instance (which is deprecated)~~
-* ~~Fix getting duplicate entries when Ropsten returns the BoughtToken event (active subscriber listening for events in browser)~~
-* ~~New token updated from transaction receipt event is not being added to state properly in realtime~~
-* ~~Get DApp tests working again~~
-* ~~On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page~~
-* ~~Instead of 'Loading ...' should say confirming (show # of confirmations?)~~
-* ~~Race condition: sometimes we do not have the list of accounts from MetaMask on time when page loads (google for onPageLoad code)~~
-* ~~Mock out a web3 object in the specs~~
-* ~~Clean up JS in Header.jsx for controlling Bulma link active states~~
-* ~~Show account balance, network and account address / avatar~~
-* ~~Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)~~
-* ~~Add a price for each token (say 0.03 eth)~~
-* ~~Toast message to say token purchase was broadcast~~
-* ~~Link to view on on etherscan~~
-* ~~If the user switches their MetaMask account or logs out of MetaMask, need to refresh the page or stop/restart event listeners with new wallet address (Long Polling?)~~
-
-#### Gratitude
-
-Big thanks to all of the fantastic open source developers who have made this technology actual, and to [Brendan Asselstine](https://medium.com/@asselstine) for helping kickstart my development with blockchain technologies.
-
-#### Etherplate Wordmark
-
-The Etherplate Wordmark is set in Sign Painter: https://typekit.com/fonts/signpainter
